@@ -1,5 +1,5 @@
-﻿query_type,Pass,Minor Error,Major Error,Total,Pass Rate (%)
-ambiguous,3,0,0,3,100.0
-comparison,3,0,0,3,100.0
+﻿query_type,pass,need_revision,fail,total,pass_rate_percent
+ambiguous,1,2,0,3,33.3
+comparison,2,1,0,3,66.7
 definition,3,0,0,3,100.0
-factual,6,0,0,6,100.0
+factual,3,3,0,6,50.0

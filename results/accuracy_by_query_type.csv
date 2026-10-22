@@ -1,0 +1,5 @@
+﻿query_type,correct,minor_error,major_error,total,correct_rate_percent
+ambiguous,2,1,0,3,66.7
+comparison,2,1,0,3,66.7
+definition,3,0,0,3,100.0
+factual,3,3,0,6,50.0

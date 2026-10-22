@@ -16,7 +16,7 @@
 - 답변 생성 횟수: 질문당 1회
 - 평가자 수: 1명
 - 평가 방식: 수동 어노테이션
-- 평가 등급: `Pass`, `Minor Error`, `Major Error`
+- 평가 등급: `Pass`, `need_revision`, `fail`
 - 진행 기간: `2026.10.15 ~ 2026.10.20`
 
 ## 3. 데이터 구성
@@ -64,7 +64,7 @@ LLM 답변을 평가한 결과를 저장합니다.
 
 문장 표현이나 순서에 차이가 있어도 사용자의 이해와 판단에 영향을 주지 않는다면 Pass로 평가했습니다.
 
-### Minor Error
+### need_revision
 
 답변의 핵심 결론은 맞지만 다음과 같은 작은 문제가 있는 경우입니다.
 
@@ -73,7 +73,7 @@ LLM 답변을 평가한 결과를 저장합니다.
 - 사용자의 판단을 크게 바꾸지는 않는 경미한 표현 오류
 - 핵심 결론과 직접 관계없는 부정확한 내용 포함
 
-### Major Error
+### fail
 
 사용자가 잘못된 판단을 내릴 수 있는 중대한 문제가 있는 경우입니다.
 
@@ -90,7 +90,7 @@ LLM 답변을 평가한 결과를 저장합니다.
 3. `reference_summary`, `required_points`, `major_error_criteria`를 작성했습니다.
 4. 동일한 조건으로 LLM에 질문하고 원본 답변을 저장했습니다.
 5. 사전에 작성한 평가 기준과 LLM 답변을 비교했습니다.
-6. 답변을 `Pass`, `Minor Error`, `Major Error`로 분류했습니다.
+6. 답변을 `Pass`, `need_revision`, `fail`로 분류했습니다.
 7. Python을 이용해 전체 결과와 질문 유형별 결과를 집계했습니다.
 
 ## 6. 분석 결과
@@ -99,14 +99,12 @@ LLM 답변을 평가한 결과를 저장합니다.
 
 | 평가 | 개수 | 비율 |
 |---|---:|---:|
-| Pass | 15 | 100.0% |
-| Minor Error | 0 | 0.0% |
-| Major Error | 0 | 0.0% |
+| Pass | 9 | 60.0% |
+| need_revision | 6 | 40.0% |
+| fail | 0 | 0.0% |
 | 전체 | 15 | 100.0% |
 
-본 데이터셋에서는 모든 답변이 사전에 정의한 필수 정보와 오류 기준을 충족하여 Pass로 평가됐습니다.
-
-이 결과는 해당 모델의 모든 금융 답변이 정확하다는 의미가 아니라, 이번 프로젝트에서 사용한 15개 질문과 평가 기준 안에서 오류가 발견되지 않았다는 의미입니다.
+본 데이터셋에서는 9개의 답변이 pass, 6개의 답변이 need_revision으로 나왔습니다.
 
 ## 7. 평가 사례
 
@@ -116,11 +114,11 @@ LLM 답변을 평가한 결과를 저장합니다.
 
 ### 기준 답변
 
-`자산관리계좌로 수시 입출금보다 상대적으로 높은 금리를 준다. 증권사에서 만들 수 있으며 주식 투자 전 돈을 잠시 보관하는 용도로 주로 활용`
+`CMA(Cash Management Account)는 주로 증권사에서 개설하는 자산관리계좌로, 입금한 자금을 RPㆍMMFㆍMMWㆍ발행어음 등의 단기금융상품에 자동으로 운용하는 구조다. 비교적 자유롭게 입출금할 수 있어 투자 전 대기자금이나 단기 여유 자금 관리에 활용된다. 수익률, 예금자 보호 여부와 출금 조건은 CMA 유형 및 금융회사에 따라 다르다.`
 
 ### 필수 포함 내용
 
-`증권사에서 개설할 수 있는 자산 관리 계좌; 높은 금리; 주식 투자 전 자본 보관 용도; 증권사; 자유로운 입출금`
+`주로 증권사에서 개설할 수 있는 자산관리계좌; 단기금융상품; 수시 입출금 가능; 유형별 위험과 수익률 차이`
 
 ### 최종 평가
 
@@ -132,22 +130,37 @@ LLM 답변이 질문의 핵심 내용을 정확하게 설명했으며, 사전에
 
 ## 8. 프로젝트 구조
 
+## 프로젝트 구조
+
 ```text
 korean-finance-llm-evaluation/
 ├─ data/
-│  ├─ llm_evaluation.xlsx
-│  ├─ questions.csv
-│  ├─ model_responses.csv
-│  └─ annotations.csv
-├─ src/
-│  ├─ export_sheets.py
-│  └─ analyze.py
+│  ├─ llm_evaluation.xlsx          # 평가 데이터를 관리하는 원본 엑셀 파일
+│  ├─ questions.csv                # 질문 및 정답 기준 데이터
+│  ├─ model_responses.csv          # LLM 답변 데이터
+│  └─ annotations.csv              # 답변 평가 및 어노테이션 데이터
+│
+├─ guidelines/                     # 평가 기준 및 라벨 정의 문서
+├─ report/                         # 분석 결과를 정리한 보고서
+│
 ├─ results/
-│  ├─ combined_results.csv
-│  ├─ overall_summary.csv
-│  ├─ query_type_summary.csv
-│  └─ error_cases.csv
-└─ README.md
+│  ├─ combined_results.csv         # 질문·답변·평가 데이터를 합친 전체 결과
+│  ├─ final_label_summary.csv      # Pass·Need Revision·Fail 분포
+│  ├─ accuracy_summary.csv         # Correct·Minor Error·Major Error 분포
+│  ├─ query_type_summary.csv       # 질문 유형별 최종 판정 결과
+│  ├─ accuracy_by_query_type.csv   # 질문 유형별 정확성 평가 결과
+│  ├─ accuracy_final_label_crosscheck.csv
+│  │                               # Accuracy와 Final Label의 교차 분석
+│  ├─ review_cases.csv             # 추가 검토가 필요한 답변
+│  └─ accuracy_error_cases.csv     # 정확성 오류가 발견된 답변
+│
+├─ scripts/                        # 실행을 돕는 보조 스크립트
+│
+├─ src/
+│  ├─ export_sheets.py             # 엑셀 시트를 CSV 파일로 내보내는 코드
+│  └─ analyze.py                   # 평가 결과를 집계하고 분석하는 코드
+│
+└─ README.md                       # 프로젝트 설명 문서
 ```
 
 ## 9. 실행 방법

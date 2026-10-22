@@ -1,0 +1,4 @@
+﻿accuracy,count,percentage
+correct,10,66.7
+minor_error,5,33.3
+major_error,0,0.0

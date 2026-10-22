@@ -19,6 +19,7 @@ SHEET_TO_CSV = {
     "annotations": "annotations.csv",
 }
 
+OVERWRITE_EXISTING = True
 
 # 엑셀 파일이 실제로 존재하는지 확인
 if not EXCEL_PATH.exists():
@@ -41,22 +42,16 @@ missing_sheets = [
     if sheet_name not in excel_file.sheet_names
 ]
 
-if missing_sheets:
-    raise ValueError(
-        f"엑셀 파일에 다음 시트가 없습니다: {missing_sheets}\n"
-        f"실제 시트 목록: {excel_file.sheet_names}"
-    )
 
 
 # 각 시트를 읽어 별도의 CSV 파일로 저장
 for sheet_name, csv_file_name in SHEET_TO_CSV.items():
     output_path = DATA_DIR / csv_file_name
 
-    # 기존 CSV 파일을 실수로 덮어쓰지 않도록 중단
-    if output_path.exists():
+    # 기존 CSV 파일에 엑셀 파일 최신 내용으로 덮어쓰기
+    if output_path.exists() and not OVERWRITE_EXISTING:
         raise FileExistsError(
-            f"이미 존재하는 파일입니다: {output_path}\n"
-            "빈 파일이라면 삭제하고 다시 실행하세요."
+            f"이미 존재하는 파일입니다: {output_path}"
         )
 
     dataframe = pd.read_excel(
