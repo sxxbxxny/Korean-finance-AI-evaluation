@@ -177,13 +177,148 @@ pip install pandas openpyxl
 python src/export_sheets.py
 ```
 
-### 평가 결과 분석
+
+### 실행 환경
+
+- Python 3.10 이상
+- Git
+- Excel 파일을 열 수 있는 프로그램(선택 사항)
+
+### 1. 저장소 내려받기
+
+터미널에서 저장소를 복제한 뒤 프로젝트 폴더로 이동한다.
 
 ```bash
-python src/analyze.py
+git clone <GitHub 저장소 URL>
+cd <저장소 폴더명>
 ```
 
-분석이 완료되면 `results` 폴더에 전체 평가 결과와 질문 유형별 집계 결과가 생성됩니다.
+예시:
+
+```bash
+git clone https://github.com/sxxbxxny/Korean-finance-AI-evaluation.git
+cd Korean-finance-AI-evaluation
+```
+
+### 2. 가상환경 생성
+
+#### Windows
+
+```bash
+py -m venv .venv
+```
+
+#### macOS/Linux
+
+```bash
+python3 -m venv .venv
+```
+
+### 3. 필요한 라이브러리 설치
+
+#### Windows
+
+```bash
+.venv\Scripts\python.exe -m pip install --upgrade pip
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+#### macOS/Linux
+
+```bash
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+### 4. 엑셀 시트를 CSV로 내보내기
+
+`data/llm_evaluation.xlsx`에 있는 데이터를 각각의 CSV 파일로 변환한다.
+
+#### Windows
+
+```bash
+.venv\Scripts\python.exe src\export_sheets.py
+```
+
+#### macOS/Linux
+
+```bash
+.venv/bin/python src/export_sheets.py
+```
+
+실행이 완료되면 `data/` 폴더에 다음 파일이 생성되거나 최신 내용으로 갱신된다.
+
+```text
+data/
+├─ questions.csv
+├─ model_responses.csv
+└─ annotations.csv
+```
+
+### 5. 평가 결과 분석
+
+변환된 CSV 데이터를 결합하고 평가 결과를 집계한다.
+
+#### Windows
+
+```bash
+.venv\Scripts\python.exe src\analyze.py
+```
+
+#### macOS/Linux
+
+```bash
+.venv/bin/python src/analyze.py
+```
+
+분석이 완료되면 `results/` 폴더에 다음 결과 파일이 생성된다.
+
+```text
+results/
+├─ combined_results.csv
+├─ final_label_summary.csv
+├─ accuracy_summary.csv
+├─ query_type_summary.csv
+├─ accuracy_by_query_type.csv
+├─ accuracy_final_label_crosscheck.csv
+├─ review_cases.csv
+└─ accuracy_error_cases.csv
+```
+
+### 전체 실행 순서
+
+```text
+llm_evaluation.xlsx 수정
+        ↓
+export_sheets.py 실행
+        ↓
+questions.csv, model_responses.csv, annotations.csv 갱신
+        ↓
+analyze.py 실행
+        ↓
+results 폴더의 분석 결과 갱신
+```
+
+### 데이터를 수정한 경우
+
+원본 데이터는 `data/llm_evaluation.xlsx`에서 관리한다. 엑셀 파일을 수정한 뒤에는 다음 두 명령어를 순서대로 다시 실행해야 변경된 내용이 분석 결과에 반영된다.
+
+#### Windows
+
+```bash
+.venv\Scripts\python.exe src\export_sheets.py
+.venv\Scripts\python.exe src\analyze.py
+```
+
+#### macOS/Linux
+
+```bash
+.venv/bin/python src/export_sheets.py
+.venv/bin/python src/analyze.py
+```
+
+> 엑셀 파일을 수정한 경우 저장한 뒤 파일을 닫고 실행하는 것을 권장한다.  
+> `data/`와 `results/`의 CSV 파일은 실행 과정에서 갱신될 수 있다.
 
 ## 10. 사용 기술
 
