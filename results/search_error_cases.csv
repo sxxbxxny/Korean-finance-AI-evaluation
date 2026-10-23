@@ -1,0 +1,42 @@
+﻿method,query_id,query_type,query_text,gold_faq_id,gold_faq_question,predicted_faq_id,predicted_faq_question,top1_score,gold_rank,top1_correct,hit_at_3,reciprocal_rank,top3_faq_ids,top3_scores
+char_tfidf,SQ002,paraphrase,CMA 통장은 어떤 계좌인가요?,F001,CMA란 무엇인가요?,F012,CMA와 파킹통장은 무엇이 다른가요?,0.1462,3,False,True,0.3333,F012; F004; F001,0.1462; 0.1003; 0.0899
+char_tfidf,SQ003,keyword,CMA 뜻,F001,CMA란 무엇인가요?,F005,CMA는 모두 예금자보호가 되나요?,0.1718,3,False,True,0.3333,F005; F006; F001,0.1718; 0.1441; 0.1154
+char_tfidf,SQ005,paraphrase,RP형이나 종금형 같은 CMA 종류를 알려주세요,F002,CMA에는 어떤 종류가 있나요?,F007,종금형 CMA는 예금자보호가 되나요?,0.2284,3,False,True,0.3333,F007; F005; F002,0.2284; 0.1599; 0.1379
+char_tfidf,SQ006,keyword,CMA 종류,F002,CMA에는 어떤 종류가 있나요?,F005,CMA는 모두 예금자보호가 되나요?,0.1335,3,False,True,0.3333,F005; F006; F002,0.1335; 0.1034; 0.0947
+char_tfidf,SQ008,paraphrase,MMF는 어떤 금융상품인가요?,F003,MMF란 무엇인가요?,F004,CMA와 MMF는 같은 금융상품인가요?,0.2852,3,False,True,0.3333,F004; F008; F003,0.2852; 0.1493; 0.0901
+char_tfidf,SQ009,keyword,MMF 뜻,F003,MMF란 무엇인가요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.1767,9,False,False,0.1111,F015; F004; F011,0.1767; 0.0523; 0.0488
+char_tfidf,SQ011,paraphrase,CMA 계좌와 MMF 펀드는 어떻게 다른가요?,F004,CMA와 MMF는 같은 금융상품인가요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.1568,4,False,False,0.25,F015; F012; F011,0.1568; 0.1488; 0.1121
+char_tfidf,SQ012,keyword,CMA MMF 차이,F004,CMA와 MMF는 같은 금융상품인가요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.2102,5,False,False,0.2,F015; F006; F005,0.2102; 0.1126; 0.1110
+char_tfidf,SQ014,paraphrase,CMA 종류와 상관없이 맡긴 돈을 보호받을 수 있나요?,F005,CMA는 모두 예금자보호가 되나요?,F007,종금형 CMA는 예금자보호가 되나요?,0.2123,4,False,False,0.25,F007; F006; F002,0.2123; 0.1320; 0.1219
+char_tfidf,SQ017,paraphrase,증권사나 CMA 종류가 달라도 금리가 똑같나요?,F006,CMA의 수익률은 모든 유형에서 고정되어 있나요?,F002,CMA에는 어떤 종류가 있나요?,0.1672,3,False,True,0.3333,F002; F005; F006,0.1672; 0.1246; 0.0998
+char_tfidf,SQ019,direct,종금형 CMA는 예금자보호 대상인가요?,F007,종금형 CMA는 예금자보호가 되나요?,F008,MMF는 예금자보호 대상인가요?,0.2642,2,False,True,0.5,F008; F007; F005,0.2642; 0.2611; 0.2426
+char_tfidf,SQ020,paraphrase,예금자보호를 받을 수 있는 CMA가 종금형인가요?,F007,종금형 CMA는 예금자보호가 되나요?,F012,CMA와 파킹통장은 무엇이 다른가요?,0.229,2,False,True,0.5,F012; F007; F005,0.2290; 0.1929; 0.1566
+char_tfidf,SQ021,keyword,종금형 CMA 예금자보호,F007,종금형 CMA는 예금자보호가 되나요?,F005,CMA는 모두 예금자보호가 되나요?,0.3219,2,False,True,0.5,F005; F007; F012,0.3219; 0.3108; 0.1939
+char_tfidf,SQ023,paraphrase,MMF에 넣은 돈도 예금처럼 보호받을 수 있나요?,F008,MMF는 예금자보호 대상인가요?,F007,종금형 CMA는 예금자보호가 되나요?,0.1794,10,False,False,0.1,F007; F014; F002,0.1794; 0.1124; 0.1047
+char_tfidf,SQ030,keyword,CMA 이자 세금,F010,CMA에서 발생한 수익에도 세금이 부과되나요?,F005,CMA는 모두 예금자보호가 되나요?,0.1236,3,False,True,0.3333,F005; F013; F010,0.1236; 0.0955; 0.0922
+char_tfidf,SQ032,paraphrase,RP형과 MMF형 CMA의 운용 자산은 어떻게 다른가요?,F011,RP형 CMA와 MMF형 CMA는 주로 어떤 자산에 투자하나요?,F006,CMA의 수익률은 모든 유형에서 고정되어 있나요?,0.1815,2,False,True,0.5,F006; F011; F012,0.1815; 0.1506; 0.1439
+char_tfidf,SQ041,paraphrase,곧 사용할 단기 자금을 MMF에 보관해도 괜찮나요?,F014,한 달 뒤 납부할 등록금 300만원을 MMF에 넣어도 될까요?,F009,MMF에 직접 가입하면 일반 통장같은 카드결제ㆍ자동이체ㆍATM 출금이 가능한가요?,0.1827,2,False,True,0.5,F009; F014; F004,0.1827; 0.1335; 0.1264
+char_tfidf,SQ042,keyword,MMF 단기자금 보관,F014,한 달 뒤 납부할 등록금 300만원을 MMF에 넣어도 될까요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.1491,7,False,False,0.1429,F015; F004; F012,0.1491; 0.1467; 0.1032
+word_tfidf,SQ002,paraphrase,CMA 통장은 어떤 계좌인가요?,F001,CMA란 무엇인가요?,F013,CMA에 가입하기 전에 상품설명서에 어떤 항목을 우선 확인해야 하나요?,0.0996,3,False,True,0.3333,F013; F005; F001,0.0996; 0.0819; 0.0806
+word_tfidf,SQ003,keyword,CMA 뜻,F001,CMA란 무엇인가요?,F005,CMA는 모두 예금자보호가 되나요?,0.1283,2,False,True,0.5,F005; F001; F006,0.1283; 0.1262; 0.1075
+word_tfidf,SQ005,paraphrase,RP형이나 종금형 같은 CMA 종류를 알려주세요,F002,CMA에는 어떤 종류가 있나요?,F007,종금형 CMA는 예금자보호가 되나요?,0.1527,6,False,False,0.1667,F007; F005; F004,0.1527; 0.1091; 0.1069
+word_tfidf,SQ006,keyword,CMA 종류,F002,CMA에는 어떤 종류가 있나요?,F005,CMA는 모두 예금자보호가 되나요?,0.1283,15,False,False,0.0667,F005; F001; F006,0.1283; 0.1262; 0.1075
+word_tfidf,SQ008,paraphrase,MMF는 어떤 금융상품인가요?,F003,MMF란 무엇인가요?,F004,CMA와 MMF는 같은 금융상품인가요?,0.142,14,False,False,0.0714,F004; F008; F002,0.1420; 0.0635; 0.0461
+word_tfidf,SQ009,keyword,MMF 뜻,F003,MMF란 무엇인가요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.1354,13,False,False,0.0769,F015; F014; F013,0.1354; 0.0000; 0.0000
+word_tfidf,SQ011,paraphrase,CMA 계좌와 MMF 펀드는 어떻게 다른가요?,F004,CMA와 MMF는 같은 금융상품인가요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.0912,13,False,False,0.0769,F015; F011; F012,0.0912; 0.0565; 0.0527
+word_tfidf,SQ012,keyword,CMA MMF 차이,F004,CMA와 MMF는 같은 금융상품인가요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.1417,13,False,False,0.0769,F015; F005; F001,0.1417; 0.0694; 0.0682
+word_tfidf,SQ014,paraphrase,CMA 종류와 상관없이 맡긴 돈을 보호받을 수 있나요?,F005,CMA는 모두 예금자보호가 되나요?,F007,종금형 CMA는 예금자보호가 되나요?,0.1473,3,False,True,0.3333,F007; F006; F005,0.1473; 0.0945; 0.0564
+word_tfidf,SQ015,keyword,CMA 전체 예금자보호 여부,F005,CMA는 모두 예금자보호가 되나요?,F013,CMA에 가입하기 전에 상품설명서에 어떤 항목을 우선 확인해야 하나요?,0.1314,2,False,True,0.5,F013; F005; F001,0.1314; 0.1149; 0.0611
+word_tfidf,SQ017,paraphrase,증권사나 CMA 종류가 달라도 금리가 똑같나요?,F006,CMA의 수익률은 모든 유형에서 고정되어 있나요?,F002,CMA에는 어떤 종류가 있나요?,0.0915,4,False,False,0.25,F002; F005; F001,0.0915; 0.0694; 0.0682
+word_tfidf,SQ018,keyword,CMA 고정금리 여부,F006,CMA의 수익률은 모든 유형에서 고정되어 있나요?,F013,CMA에 가입하기 전에 상품설명서에 어떤 항목을 우선 확인해야 하나요?,0.1175,4,False,False,0.25,F013; F005; F001,0.1175; 0.0694; 0.0682
+word_tfidf,SQ019,direct,종금형 CMA는 예금자보호 대상인가요?,F007,종금형 CMA는 예금자보호가 되나요?,F008,MMF는 예금자보호 대상인가요?,0.1538,2,False,True,0.5,F008; F007; F012,0.1538; 0.1511; 0.1343
+word_tfidf,SQ020,paraphrase,예금자보호를 받을 수 있는 CMA가 종금형인가요?,F007,종금형 CMA는 예금자보호가 되나요?,F012,CMA와 파킹통장은 무엇이 다른가요?,0.1683,7,False,False,0.1429,F012; F004; F009,0.1683; 0.0997; 0.0141
+word_tfidf,SQ021,keyword,종금형 CMA 예금자보호,F007,종금형 CMA는 예금자보호가 되나요?,F005,CMA는 모두 예금자보호가 되나요?,0.1879,2,False,True,0.5,F005; F007; F002,0.1879; 0.1310; 0.0820
+word_tfidf,SQ023,paraphrase,MMF에 넣은 돈도 예금처럼 보호받을 수 있나요?,F008,MMF는 예금자보호 대상인가요?,F007,종금형 CMA는 예금자보호가 되나요?,0.1456,10,False,False,0.1,F007; F006; F014,0.1456; 0.0560; 0.0520
+word_tfidf,SQ024,keyword,MMF 예금자보호 여부,F008,MMF는 예금자보호 대상인가요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.0883,3,False,True,0.3333,F015; F013; F008,0.0883; 0.0871; 0.0500
+word_tfidf,SQ027,keyword,MMF 카드결제 자동이체 ATM,F009,MMF에 직접 가입하면 일반 통장같은 카드결제ㆍ자동이체ㆍATM 출금이 가능한가요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.1354,7,False,False,0.1429,F015; F014; F013,0.1354; 0.0000; 0.0000
+word_tfidf,SQ030,keyword,CMA 이자 세금,F010,CMA에서 발생한 수익에도 세금이 부과되나요?,F005,CMA는 모두 예금자보호가 되나요?,0.1283,9,False,False,0.1111,F005; F001; F006,0.1283; 0.1262; 0.1075
+word_tfidf,SQ032,paraphrase,RP형과 MMF형 CMA의 운용 자산은 어떻게 다른가요?,F011,RP형 CMA와 MMF형 CMA는 주로 어떤 자산에 투자하나요?,F006,CMA의 수익률은 모든 유형에서 고정되어 있나요?,0.1038,2,False,True,0.5,F006; F011; F012,0.1038; 0.0668; 0.0524
+word_tfidf,SQ036,keyword,CMA 파킹통장 차이,F012,CMA와 파킹통장은 무엇이 다른가요?,F005,CMA는 모두 예금자보호가 되나요?,0.1283,6,False,False,0.1667,F005; F001; F006,0.1283; 0.1262; 0.1075
+word_tfidf,SQ041,paraphrase,곧 사용할 단기 자금을 MMF에 보관해도 괜찮나요?,F014,한 달 뒤 납부할 등록금 300만원을 MMF에 넣어도 될까요?,F011,RP형 CMA와 MMF형 CMA는 주로 어떤 자산에 투자하나요?,0.0983,4,False,False,0.25,F011; F009; F001,0.0983; 0.0895; 0.0799
+word_tfidf,SQ042,keyword,MMF 단기자금 보관,F014,한 달 뒤 납부할 등록금 300만원을 MMF에 넣어도 될까요?,F015,투자 경험이 없는 사람에게 CMA와 MMF 중 어느 쪽이 더 적합한가요?,0.1023,7,False,False,0.1429,F015; F004; F012,0.1023; 0.0614; 0.0554
