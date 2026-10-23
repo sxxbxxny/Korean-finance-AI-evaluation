@@ -3,77 +3,75 @@ from pathlib import Path
 import pandas as pd
 
 
-# 현재 프로젝트의 최상위 폴더
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# 현재 파일 위치를 기준으로 프로젝트 최상위 폴더를 찾는다.
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-# data 폴더 위치를 지정
-DATA_DIR = PROJECT_ROOT / "data"
+# 원본 엑셀 파일 경로
+EXCEL_PATH = PROJECT_ROOT / "data" / "llm_evaluation.xlsx"
 
-# 원본 엑셀 파일의 위치
-EXCEL_PATH = DATA_DIR / "llm_evaluation.xlsx"
-
-# 엑셀 시트 이름과 생성할 CSV 파일명 연결
-SHEET_TO_CSV = {
-    "questions": "questions.csv",
-    "model_responses": "model_responses.csv",
-    "annotations": "annotations.csv",
-}
-
-OVERWRITE_EXISTING = True
-
-# 엑셀 파일이 실제로 존재하는지 확인
-if not EXCEL_PATH.exists():
-    raise FileNotFoundError(
-        f"엑셀 파일을 찾을 수 없습니다: {EXCEL_PATH}"
-    )
-
-
-# 엑셀 파일에 들어 있는 시트 이름 확인
-excel_file = pd.ExcelFile(EXCEL_PATH)
-
-print("엑셀 파일에서 확인된 시트:")
-print(excel_file.sheet_names)
-
-
-# 필요한 시트가 모두 존재하는지 확인
-missing_sheets = [
-    sheet_name
-    for sheet_name in SHEET_TO_CSV
-    if sheet_name not in excel_file.sheet_names
+# CSV로 내보낼 엑셀 시트 목록
+SHEET_NAMES = [
+    "questions",
+    "model_responses",
+    "annotations",
+    "faq_corpus",
+    "search_queries",
 ]
 
 
+def export_sheets() -> None:
+    """엑셀의 각 시트를 개별 CSV 파일로 저장한다."""
 
-# 각 시트를 읽어 별도의 CSV 파일로 저장
-for sheet_name, csv_file_name in SHEET_TO_CSV.items():
-    output_path = DATA_DIR / csv_file_name
-
-    # 기존 CSV 파일에 엑셀 파일 최신 내용으로 덮어쓰기
-    if output_path.exists() and not OVERWRITE_EXISTING:
-        raise FileExistsError(
-            f"이미 존재하는 파일입니다: {output_path}"
+    if not EXCEL_PATH.exists():
+        raise FileNotFoundError(
+            f"엑셀 파일을 찾을 수 없습니다: {EXCEL_PATH}"
         )
 
-    dataframe = pd.read_excel(
-        EXCEL_PATH,
-        sheet_name=sheet_name,
-        dtype=str,
-    )
+    # 실제 엑셀 파일에 들어 있는 시트 이름 확인
+    excel_file = pd.ExcelFile(EXCEL_PATH)
+    existing_sheets = excel_file.sheet_names
 
-    # 비어 있는 셀을 빈 문자열로 처리
-    dataframe = dataframe.fillna("")
+    missing_sheets = [
+        sheet_name
+        for sheet_name in SHEET_NAMES
+        if sheet_name not in existing_sheets
+    ]
 
-    # CSV 파일로 저장
-    dataframe.to_csv(
-        output_path,
-        index=False,
-        encoding="utf-8-sig",
-    )
+    if missing_sheets:
+        raise ValueError(
+            "엑셀 파일에 다음 시트가 없습니다: "
+            + ", ".join(missing_sheets)
+        )
 
-    print(
-        f"{sheet_name} 시트 저장 완료: "
-        f"{csv_file_name} ({len(dataframe)}행)"
-    )
+    for sheet_name in SHEET_NAMES:
+        dataframe = pd.read_excel(
+            EXCEL_PATH,
+            sheet_name=sheet_name,
+            dtype=str,
+        )
+
+        # 비어 있는 셀을 빈 문자열로 처리
+        dataframe = dataframe.fillna("")
+
+        # 열 이름 앞뒤의 불필요한 공백 제거
+        dataframe.columns = [
+            str(column).strip()
+            for column in dataframe.columns
+        ]
+
+        output_path = PROJECT_ROOT / "data" / f"{sheet_name}.csv"
+
+        dataframe.to_csv(
+            output_path,
+            index=False,
+            encoding="utf-8-sig",
+        )
+
+        print(
+            f"[완료] {sheet_name} → {output_path.name} "
+            f"({len(dataframe)}개 행)"
+        )
 
 
-print("모든 시트를 CSV 파일로 변환했습니다.")
+if __name__ == "__main__":
+    export_sheets()

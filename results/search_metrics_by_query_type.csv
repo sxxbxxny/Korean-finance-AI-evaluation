@@ -1,0 +1,7 @@
+﻿method,query_type,query_count,top1_accuracy,hit_at_3,mrr
+char_tfidf,direct,15,0.9333,1.0,0.9667
+char_tfidf,paraphrase,15,0.3333,0.8,0.5622
+char_tfidf,keyword,15,0.5333,0.8,0.6636
+word_tfidf,direct,15,0.9333,1.0,0.9667
+word_tfidf,paraphrase,15,0.3333,0.5333,0.4816
+word_tfidf,keyword,15,0.2,0.4667,0.3912
