@@ -368,7 +368,6 @@ Korean-finance-AI-evaluation/
 │  └─ search_queries.csv
 │
 ├─ guidelines/
-├─ report/
 │
 ├─ results/
 │  ├─ combined_results.csv
